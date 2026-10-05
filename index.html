@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tetra İncek · Sosyal Medya Dili</title>
+<meta name="description" content="Tetra İncek için 27 postluk sosyal medya tasarım dili: sabit logo kullanımı, şablonlar, tek tek postlar ve profil grid görünümü.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --lacivert:#002269;
+  --lacivert-koyu:#0F1E46;
+  --kirik-beyaz:#F6F3EE;
+  --tas:#D9CFC1;
+  --adacayi:#8C9A7E;
+  --grafit:#2B2B2B;
+  --metin:#1D1F24;
+  --soluk:#6B6F78;
+  --cizgi:#E2DDD4;
+  --zemin:#FBFAF7;
+  --kart:#FFFFFF;
+  --serif:"Cormorant Garamond", Georgia, serif;
+  --sans:"Manrope", system-ui, sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--zemin);color:var(--metin);font-family:var(--sans);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:var(--lacivert)}
+
+/* ---------- sayfa iskeleti ---------- */
+.sayfa{max-width:1240px;margin:0 auto;padding:0 16px}
+header.ust{position:sticky;top:0;z-index:20;background:rgba(251,250,247,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--cizgi)}
+header.ust .sayfa{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+header.ust img{height:26px;width:auto}
+nav.menu{display:flex;gap:20px;overflow-x:auto;scrollbar-width:none}
+nav.menu a{font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--soluk);white-space:nowrap}
+nav.menu a:hover{color:var(--lacivert)}
+
+.kapak{padding:88px 0 64px;border-bottom:1px solid var(--cizgi)}
+.ust-etiket{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--soluk);margin-bottom:20px}
+.kapak h1{font-family:var(--serif);font-weight:300;font-size:clamp(40px,7vw,84px);line-height:1.02;color:var(--lacivert);letter-spacing:-.01em}
+.kapak h1 em{font-style:italic}
+.kapak p.giris{max-width:640px;margin-top:28px;font-size:17px;color:#40444C}
+.kapak .ozet{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--cizgi);border:1px solid var(--cizgi);margin-top:48px}
+.kapak .ozet div{background:var(--zemin);padding:20px}
+.kapak .ozet b{display:block;font-family:var(--serif);font-weight:400;font-size:36px;color:var(--lacivert);line-height:1}
+.kapak .ozet span{font-size:12px;color:var(--soluk)}
+
+section.bolum{padding:80px 0;border-bottom:1px solid var(--cizgi)}
+.bolum-baslik{display:grid;grid-template-columns:120px 1fr;gap:24px;margin-bottom:40px}
+.bolum-baslik .no{font-family:var(--serif);font-size:44px;font-weight:300;color:var(--tas);line-height:1}
+.bolum-baslik h2{font-family:var(--serif);font-weight:400;font-size:clamp(28px,4vw,42px);line-height:1.1;color:var(--lacivert)}
+.bolum-baslik p{margin-top:12px;max-width:720px;color:#4A4E57}
+
+/* ---------- logo kuralları ---------- */
+.logo-sahne{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.logo-kutu{border:1px solid var(--cizgi);background:var(--kart);aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;position:relative;padding:12%}
+.logo-kutu.koyu{background:var(--lacivert);border-color:var(--lacivert)}
+.logo-kutu.foto{background:center/cover url("img/03.jpg");border:0}
+.logo-kutu.foto::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45),rgba(0,0,0,0) 60%)}
+.logo-kutu img{position:relative;max-height:100%}
+.logo-kutu .alt{position:absolute;left:14px;bottom:10px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--soluk)}
+.logo-kutu.koyu .alt,.logo-kutu.foto .alt{color:rgba(255,255,255,.75)}
+
+.kural-tablo{margin-top:40px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.kural{border-top:2px solid var(--lacivert);padding-top:16px}
+.kural h3{font-size:12px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px;color:var(--lacivert)}
+.kural p{font-size:14px;color:#4A4E57}
+
+
+/* ---------- şablon şeması ---------- */
+.sablonlar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px}
+.sema{display:grid;grid-template-columns:minmax(0,260px) 1fr;gap:24px;align-items:start}
+.sema ol{padding-left:18px;font-size:14px;color:#4A4E57}
+.sema ol li{margin-bottom:8px}
+.sema h3{font-family:var(--serif);font-weight:400;font-size:26px;color:var(--lacivert);margin-bottom:12px}
+.olcu{position:absolute;inset:0;pointer-events:none}
+.olcu span{position:absolute;border:1px dashed rgba(255,80,60,.9)}
+.renkler{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin-top:48px}
+.renk{border:1px solid var(--cizgi);background:var(--kart)}
+.renk i{display:block;aspect-ratio:3/2}
+.renk div{padding:10px 12px;font-size:12px}
+.renk b{display:block;font-weight:600}
+.tipo{margin-top:48px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.tipo div{border:1px solid var(--cizgi);background:var(--kart);padding:28px}
+.tipo .s{font-family:var(--serif);font-weight:300;font-size:44px;line-height:1.05;color:var(--lacivert)}
+.tipo .s em{font-style:italic}
+.tipo .k{font-family:var(--sans);font-weight:500;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--lacivert)}
+.tipo small{display:block;margin-top:14px;color:var(--soluk);font-size:12px}
+
+/* ---------- POST (1080×1350 oranı, tüm ölçüler cqw) ---------- */
+.post{position:relative;aspect-ratio:4/5;overflow:hidden;container-type:inline-size;background:var(--lacivert-koyu);color:#fff}
+.post .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.post .perde{position:absolute;inset:0}
+.post.video .perde{background:
+  linear-gradient(180deg,rgba(10,14,24,.55) 0%,rgba(10,14,24,.18) 16%,rgba(10,14,24,0) 30%),
+  linear-gradient(0deg,rgba(10,14,24,.58) 0%,rgba(10,14,24,0) 44%)}
+.post.tasarim.koyu .perde{background:linear-gradient(180deg,rgba(10,14,24,.38) 0%,rgba(10,14,24,0) 42%,rgba(10,14,24,0) 70%,rgba(10,14,24,.40) 100%)}
+.post.tasarim.acik{color:var(--lacivert)}
+.post.tasarim.acik .perde{background:linear-gradient(180deg,rgba(246,243,238,.55) 0%,rgba(246,243,238,0) 38%)}
+.post.tasarim.acik.alt-perde .perde{background:linear-gradient(180deg,rgba(246,243,238,.55) 0%,rgba(246,243,238,0) 38%),linear-gradient(0deg,rgba(10,14,24,.45) 0%,rgba(10,14,24,0) 30%)}
+.post.tasarim.acik .temsili{color:#fff}
+.post.duz .perde{background:none}
+.post.tasarim.karart .perde{background:rgba(10,14,24,.30)}
+
+/* video kapağı: yatay logo sol üst, başlık sol alt */
+.post .logo-yatay{position:absolute;left:6.5cqw;top:6.5cqw;width:27cqw;height:auto}
+.post.video h4{position:absolute;left:6.5cqw;right:12cqw;bottom:11cqw;font-family:var(--serif);font-weight:300;font-size:8.2cqw;line-height:1.02;letter-spacing:-.01em;text-wrap:balance}
+/* tasarım postu: dikey logo alt orta, başlık üst orta */
+.post .logo-dikey{position:absolute;left:50%;bottom:6.5cqw;transform:translateX(-50%);width:23cqw;height:auto}
+.post.tasarim .metin{position:absolute;left:8cqw;right:8cqw;top:10cqw;text-align:center}
+.post.tasarim .metin.orta{top:50%;transform:translateY(-62%)}
+.post .kas{font-family:var(--sans);font-weight:500;font-size:2.3cqw;letter-spacing:.32em;text-transform:uppercase;opacity:.9;margin-bottom:3.2cqw}
+.post.tasarim h4{font-family:var(--serif);font-weight:300;font-size:8.6cqw;line-height:1.02;letter-spacing:-.01em;text-wrap:balance}
+.post h4 em{font-style:italic}
+.post.dev h4{font-family:var(--sans);font-weight:300;font-size:17cqw;letter-spacing:.06em;line-height:.95}
+.post.dev .metin{top:8cqw}
+.post .temsili{position:absolute;left:6.5cqw;bottom:5.2cqw;font-family:var(--sans);font-size:1.75cqw;letter-spacing:.06em;opacity:.78}
+.post.tasarim .temsili{left:auto;right:6.5cqw}
+.post .alt-satir{font-family:var(--sans);font-size:2.5cqw;letter-spacing:.18em;text-transform:uppercase;margin-top:4cqw;opacity:.85}
+.post .plan{position:absolute;inset:0;width:100%;height:100%}
+.post .reels{display:none}
+.izgara .post .reels{display:block;position:absolute;right:4.5cqw;top:4.5cqw;width:7cqw;height:7cqw;opacity:.95}
+.izgara .post .temsili,.izgara .post .alt-satir{display:none}
+
+/* ---------- 27 post listesi ---------- */
+.araclar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.araclar button{font:inherit;font-size:12px;letter-spacing:.1em;text-transform:uppercase;padding:9px 14px;border:1px solid var(--cizgi);background:var(--kart);color:var(--metin);cursor:pointer}
+.araclar button[aria-pressed="true"]{background:var(--lacivert);border-color:var(--lacivert);color:#fff}
+.liste{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px 24px}
+.liste figure figcaption{padding-top:12px;display:grid;grid-template-columns:auto 1fr;gap:2px 12px;font-size:13px}
+.liste figcaption .n{font-family:var(--serif);font-size:28px;line-height:1;color:var(--lacivert);grid-row:span 2}
+.liste figcaption .tur{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--soluk)}
+.liste figcaption .not{grid-column:2;color:#4A4E57}
+.liste figure[hidden]{display:none}
+
+/* ---------- profil grid ---------- */
+.telefon{max-width:600px;margin:0 auto;background:#fff;border:1px solid var(--cizgi);box-shadow:0 30px 80px -40px rgba(0,34,105,.35)}
+.profil{display:flex;align-items:center;gap:18px;padding:22px 18px}
+.profil .avatar{width:72px;height:72px;border-radius:50%;background:var(--lacivert);display:flex;align-items:center;justify-content:center;flex:none;padding:14px}
+.profil b{font-size:15px}
+.profil span{display:block;font-size:13px;color:var(--soluk)}
+.izgara{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px;background:#fff}
+.izgara .hucre{overflow:hidden;aspect-ratio:3/4;position:relative}
+.izgara.oran45 .hucre{aspect-ratio:4/5}
+.izgara .hucre .post{position:absolute;left:50%;top:50%;width:100%;transform:translate(-50%,-50%)}
+.izgara:not(.oran45) .hucre .post{width:106.67%}
+
+footer{padding:48px 0 64px;font-size:12px;color:var(--soluk)}
+
+@media (max-width:900px){
+  .liste{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sablonlar,.tipo{grid-template-columns:1fr}
+  .kural-tablo{grid-template-columns:1fr 1fr}
+  .renkler{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .bolum-baslik{grid-template-columns:1fr;gap:8px}
+}
+@media (max-width:560px){
+  .liste{grid-template-columns:1fr}
+  .logo-sahne,.kural-tablo{grid-template-columns:1fr}
+  .sema{grid-template-columns:1fr}
+  .kapak .ozet{grid-template-columns:1fr 1fr}
+  nav.menu{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="ust">
+  <div class="sayfa">
+    <img src="logo/tetra-yatay-lacivert.svg" alt="Tetra İncek">
+    <nav class="menu">
+      <a href="#logo">Logo</a><a href="#sistem">Sistem</a><a href="#postlar">27 Post</a><a href="#grid">Grid</a>
+    </nav>
+  </div>
+</header>
+
+<main class="sayfa">
+
+<section class="kapak">
+  <div class="ust-etiket">Tetra İncek · Sosyal Medya Tasarım Dili · Sürüm 1 · Ekim 2026</div>
+  <h1>Sadelik, en nihai<br><em>gelişmişliktir.</em></h1>
+  <p class="giris">Üç seri: <b>Doğa</b>, <b>Kavram</b> ve <b>Süreç</b>. 27 post, dama düzeninde Reels kapakları ve tasarım postları. Logo her postta tek bir sabit kurala göre yerleştirilir.</p>
+  <div class="ozet">
+    <div><b>27</b><span>post · 9 satır</span></div>
+    <div><b>14</b><span>Reels kapağı (Seray)</span></div>
+    <div><b>13</b><span>tasarım postu</span></div>
+    <div><b>2</b><span>sabit logo yerleşimi</span></div>
+  </div>
+</section>
+
+<!-- 01 LOGO -->
+<section class="bolum" id="logo">
+  <div class="bolum-baslik">
+    <div class="no">01</div>
+    <div>
+      <h2>Sabit logo kullanımı</h2>
+      <p>Logo yalnızca iki orijinal dosyadan (dikey ve yatay) kullanılır. Yeniden çizilmez, harf aralığı ve oranı değiştirilmez. Renk yalnızca lacivert <b>#002269</b> ya da beyazdır.</p>
+    </div>
+  </div>
+
+  <div class="logo-sahne">
+    <div class="logo-kutu"><img src="logo/tetra-dikey-lacivert.svg" alt="Dikey logo lacivert" style="width:46%"><span class="alt">Dikey · lacivert · açık zemin</span></div>
+    <div class="logo-kutu koyu"><img src="logo/tetra-dikey-beyaz.svg" alt="Dikey logo beyaz" style="width:46%"><span class="alt">Dikey · beyaz · koyu zemin</span></div>
+    <div class="logo-kutu"><img src="logo/tetra-yatay-lacivert.svg" alt="Yatay logo lacivert" style="width:78%"><span class="alt">Yatay · lacivert</span></div>
+    <div class="logo-kutu foto"><img src="logo/tetra-yatay-beyaz.svg" alt="Yatay logo beyaz, fotoğraf üstünde" style="width:78%"><span class="alt">Yatay · beyaz · fotoğraf üstü (üst perde ile)</span></div>
+  </div>
+
+  <div class="kural-tablo">
+    <div class="kural"><h3>Tasarım postu</h3><p><b>Dikey logo</b>, alt ortada. Genişlik postun <b>%23</b>'ü (1080 px'te 248 px), alttan boşluk <b>%6,5</b> (70 px). Renk, logonun oturduğu alt bölgeye göre seçilir: açık düz zeminde lacivert, fotoğraf ya da koyu zeminde beyaz (altında %30'luk koyu perde).</p></div>
+    <div class="kural"><h3>Reels kapağı</h3><p><b>Yatay logo</b>, sol üstte. Genişlik <b>%27</b> (292 px), üstten ve soldan <b>%6,5</b> (70 px). Her zaman beyaz, altında %42'lik koyu üst perde. Sağ üst köşe Instagram'ın Reels simgesine ayrılır, boş kalır.</p></div>
+    <div class="kural"><h3>Koruma alanı</h3><p>Logonun çevresinde en az simgedeki en küçük kutunun yüksekliği kadar boşluk. Başlık, "Görseller temsilidir" ibaresi ya da görselin ana öğesi bu alana girmez.</p></div>
+    <div class="kural"><h3>En küçük boyut</h3><p>Yatay logo 180 px, dikey logo 140 px genişliğin altına inmez. Profil grid'inde okunmasa da bu kural postun tam boyutu için geçerlidir.</p></div>
+    <div class="kural"><h3>Tek logo</h3><p>Bir postta logo yalnızca bir kez kullanılır. Görselin içine (bina cephesi, tabela) ikinci bir logo yerleştirilmez.</p></div>
+    <div class="kural"><h3>Kaynak dosya</h3><p>Dikey ve yatay logo, lacivert ve beyaz olmak üzere dört vektör dosya.</p></div>
+  </div>
+
+</section>
+
+<!-- 02 SİSTEM -->
+<section class="bolum" id="sistem">
+  <div class="bolum-baslik">
+    <div class="no">02</div>
+    <div>
+      <h2>İki şablon, tek sistem</h2>
+      <p>Her post iki şablondan birine oturur. Görsel değişir, yerleşim değişmez. Bütün ölçüler 1080 × 1350 px (4:5) posta göre verildi.</p>
+    </div>
+  </div>
+  <div class="sablonlar">
+    <div class="sema">
+      <div id="sema-video"></div>
+      <div>
+        <h3>Reels kapağı</h3>
+        <ol>
+          <li>Yatay beyaz logo, sol üst, 70 px içeride.</li>
+          <li>Başlık sol altta, alttan 119 px. Cormorant Garamond Light, 88 px, en fazla iki satır.</li>
+          <li>"Görseller temsilidir" sol altta, 19 px.</li>
+          <li>Sağ üst köşe boş (Instagram'ın Reels simgesi).</li>
+          <li>Kapak 9:16 çekilir; yazı ve logo profil grid'inin gösterdiği orta 3:4 alanın içinde kalır.</li>
+        </ol>
+      </div>
+    </div>
+    <div class="sema">
+      <div id="sema-tasarim"></div>
+      <div>
+        <h3>Tasarım postu</h3>
+        <ol>
+          <li>İsteğe bağlı üst etiket (Manrope, aralıklı büyük harf).</li>
+          <li>Başlık üst ortada, 108 px aşağıda. İkinci satır italik.</li>
+          <li>Dikey logo alt ortada, 70 px yukarıda.</li>
+          <li>"Görseller temsilidir" sağ altta (fotoğraflı postlarda).</li>
+          <li>Açık zeminde lacivert, koyu zeminde beyaz. Ara ton yok.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <div class="renkler">
+    <div class="renk"><i style="background:#002269"></i><div><b>Tetra lacivert</b>#002269 · logo, başlık</div></div>
+    <div class="renk"><i style="background:#0F1E46"></i><div><b>Gece</b>#0F1E46 · koyu zemin</div></div>
+    <div class="renk"><i style="background:#F6F3EE"></i><div><b>Kırık beyaz</b>#F6F3EE · açık zemin</div></div>
+    <div class="renk"><i style="background:#D9CFC1"></i><div><b>Taş</b>#D9CFC1 · yardımcı</div></div>
+    <div class="renk"><i style="background:#8C9A7E"></i><div><b>Adaçayı</b>#8C9A7E · doğa tonu</div></div>
+    <div class="renk"><i style="background:#2B2B2B"></i><div><b>Grafit</b>#2B2B2B · süreç serisi</div></div>
+  </div>
+
+  <div class="tipo">
+    <div><div class="s">Doğanın <em>içinde.</em></div><small>Başlık · Cormorant Garamond Light 300 ve Light Italic · cümle düzeni, nokta ile biter</small></div>
+    <div><div class="k">Aşama 01 · Güneş paneli</div><small>Etiket · Manrope Medium 500 · büyük harf · %32 harf aralığı · başlığın üstünde</small></div>
+  </div>
+</section>
+
+<!-- 03 POSTLAR -->
+<section class="bolum" id="postlar">
+  <div class="bolum-baslik">
+    <div class="no">03</div>
+    <div>
+      <h2>27 post, tek tek</h2>
+      <p>Numara, profil grid'indeki yeri gösterir (sol üstten sağ alta). Instagram en yeni postu başa koyduğu için paylaşım sırası tersidir: önce 27, en son 1.</p>
+    </div>
+  </div>
+  <div class="araclar" role="group" aria-label="Filtre">
+    <button data-f="hepsi" aria-pressed="true">Hepsi</button>
+    <button data-f="video" aria-pressed="false">Reels kapakları</button>
+    <button data-f="tasarim" aria-pressed="false">Tasarım postları</button>
+    <button data-f="doga" aria-pressed="false">Doğa</button>
+    <button data-f="kavram" aria-pressed="false">Kavram</button>
+    <button data-f="surec" aria-pressed="false">Süreç</button>
+  </div>
+  <div class="liste" id="liste"></div>
+</section>
+
+<!-- 04 GRID -->
+<section class="bolum" id="grid">
+  <div class="bolum-baslik">
+    <div class="no">04</div>
+    <div>
+      <h2>Profil grid'i</h2>
+      <p>Dama düzeni: her satırda Reels kapağı ve tasarım postu sırayla değişir, dikeyde de aynı tür alt alta gelmez. Instagram profili kareleri 3:4 kırparak gösterir; 4:5 görünüme geçip farkı görebilirsiniz.</p>
+    </div>
+  </div>
+  <div class="araclar" role="group" aria-label="Grid oranı">
+    <button data-o="34" aria-pressed="true">Profil görünümü 3:4</button>
+    <button data-o="45" aria-pressed="false">Post oranı 4:5</button>
+  </div>
+  <div class="telefon">
+    <div class="profil">
+      <div class="avatar"><img src="logo/tetra-dikey-beyaz.svg" alt=""></div>
+      <div><b>tetraincek</b><span>İnşaat Şirketi · Sadelik en nihai gelişmişliktir.</span><span>İncek · Gölbaşı · Ankara</span></div>
+    </div>
+    <div class="izgara" id="izgara"></div>
+  </div>
+</section>
+
+
+<footer class="sayfa">Tetra İncek · Yıldırım Grup · İncek, Gölbaşı / Ankara · Görseller temsilidir.</footer>
+</main>
+
+<script>
+const REELS='<svg class="reels" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><path d="M2.5 8h19M8.5 2.5l3 5.5M14.5 2.5l3 5.5"/><path d="M10 11.2v6l5-3z" fill="#fff" stroke="none"/></svg>';
+
+// tur: v = Reels kapağı, t = tasarım postu · tema: koyu/acik · seri: doga/kavram/surec
+const POSTLAR=[
+ {n:1, tur:'v', seri:'doga',  b:'Doğanın içinde.'},
+ {n:2, tur:'t', seri:'doga',  tema:'koyu', konum:'orta', karart:true, b:'İncek’te yeni<br>bir <em>yaşam.</em>'},
+ {n:3, tur:'v', seri:'doga',  b:'Sabahlar burada<br>başka.'},
+ {n:4, tur:'t', seri:'doga',  tema:'acik', kas:'Güneş paneli · Ev şarjı', b:'Enerjisi<br><em>güneşten.</em>'},
+ {n:5, tur:'v', seri:'doga',  b:'Yavaşlayın.'},
+ {n:6, tur:'t', seri:'doga',  tema:'acik', b:'Şehrin yanında,<br><em>doğanın içinde.</em>'},
+ {n:7, tur:'v', seri:'doga',  b:'Her villaya özel<br>bir ağaç.'},
+ {n:8, tur:'t', seri:'kavram',tema:'acik', b:'Yaşam anlayışına<br><em>bir çerçeve kattık.</em>'},
+ {n:9, tur:'v', seri:'kavram',b:'Önce bir<br>çizgiydi.'},
+ {n:10,tur:'t', seri:'kavram',tema:'acik', b:'Çizgiden <em>yaşama.</em>'},
+ {n:11,tur:'v', seri:'kavram',b:'Seçim sizin.'},
+ {n:12,tur:'t', seri:'kavram',tema:'koyu', duz:true, renk:'#0F1E46', plan:true, kas:'Vaziyet planı · temsilidir', b:'10 villa.<br><em>Tek bir yaşam anlayışı.</em>'},
+ {n:13,tur:'v', seri:'kavram',b:'Hayal ettiğiniz<br>gibi.'},
+ {n:14,tur:'t', seri:'kavram',tema:'acik', logo:'lacivert', b:'Kendi zevkinizle<br><em>tamamlayın.</em>'},
+ {n:15,tur:'v', seri:'kavram',b:'Kendi evinizi<br>tasarlayın.'},
+ {n:16,tur:'t', seri:'surec', tema:'koyu', b:'İleri natamam teslim.<br><em>İç mekân sizin imzanızla.</em>'},
+ {n:17,tur:'v', seri:'surec', b:'İnşaatın<br>arkasında.'},
+ {n:18,tur:'t', seri:'surec', tema:'koyu', dev:true, kas:'Aşama 01', b:'SAĞLAM<br>TEMEL'},
+ {n:19,tur:'v', seri:'surec', b:'Planlar masada.'},
+ {n:20,tur:'t', seri:'surec', tema:'koyu', kas:'Aşama 02 · Güneş paneli', b:'Enerjisini<br><em>kendi üretir.</em>'},
+ {n:21,tur:'v', seri:'surec', b:'Her detay<br>kontrol edildi.'},
+ {n:22,tur:'t', seri:'surec', tema:'koyu', dev:true, kas:'Aşama 03', b:'HAZIR'},
+ {n:23,tur:'v', seri:'surec', b:'Ve sonuç.'},
+ {n:24,tur:'t', seri:'doga',  tema:'koyu', konum:'orta', karart:true, b:'Bir evden<br><em>fazlası.</em>'},
+ {n:25,tur:'v', seri:'kavram',b:'Hoş geldiniz.'},
+ {n:26,tur:'t', seri:'surec', tema:'koyu', duz:true, renk:'#002269', kas:'Satış ofisi açık', b:'Tetra İncek’te<br><em>son villalar.</em>', alt:'Randevu ile yerinde gezin'},
+ {n:27,tur:'v', seri:'surec', b:'Sizi yerinde<br>bekliyoruz.'},
+];
+const SERI={doga:'Doğa',kavram:'Kavram',surec:'Süreç'};
+
+// 12. post: vektör vaziyet planı — 6 villa dikey sıra + 4 villa alt sıra (L düzeni, toplam 10)
+function villa(x,y,s){
+  return `<g transform="translate(${x} ${y})">
+    <rect x="0" y="0" width="${s}" height="${s}" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="1"/>
+    <rect x="${s*.2}" y="${s*.24}" width="${s*.42}" height="${s*.46}" fill="rgba(255,255,255,.14)" stroke="#fff" stroke-width="1.4"/>
+    <rect x="${s*.46}" y="${s*.14}" width="${s*.34}" height="${s*.36}" fill="rgba(255,255,255,.08)" stroke="#fff" stroke-width="1.4"/>
+    <rect x="${s*.52}" y="${s*.2}" width="${s*.22}" height="${s*.16}" fill="none" stroke="#fff" stroke-width=".8" stroke-dasharray="2 2"/>
+    <circle cx="${s*.14}" cy="${s*.84}" r="${s*.06}" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="1"/>
+    <circle cx="${s*.86}" cy="${s*.84}" r="${s*.06}" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="1"/>
+  </g>`;
+}
+function planSVG(){
+  const s=96, x0=300, y0=430;            // 1080×1350 tuval
+  let g='';
+  for(let i=0;i<6;i++) g+=villa(x0, y0+i*s, s);            // dikey sıra: 6
+  for(let i=0;i<4;i++) g+=villa(x0+(i+1)*s, y0+5*s, s);    // alt sıra: 4 (köşedeki villaya bitişik)
+  const yolX=x0-26, yolY=y0+6*s+26, son=x0+5*s+40;
+  return `<svg class="plan" viewBox="0 0 1080 1350" aria-label="10 villalık L düzeni vaziyet planı">
+    <path d="M${yolX} ${y0-40} V${yolY} H${son}" fill="none" stroke="#fff" stroke-width="1.2"/>
+    <path d="M${yolX-18} ${y0-40} V${yolY+18} H${son}" fill="none" stroke="#fff" stroke-width="1.2"/>
+    <path d="M${yolX-9} ${y0-40} V${yolY+9} H${son}" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="1" stroke-dasharray="8 6"/>
+    ${g}
+    <g fill="none" stroke="rgba(255,255,255,.55)" stroke-width="1">
+      <circle cx="${x0+6*s+70}" cy="${y0+60}" r="26"/><path d="M${x0+6*s+70} ${y0+38} V${y0+82} M${x0+6*s+48} ${y0+60} H${x0+6*s+92}"/>
+    </g>
+    <text x="${x0+6*s+70}" y="${y0+28}" fill="#fff" font-family="Manrope" font-size="14" text-anchor="middle" letter-spacing="2">K</text>
+  </svg>`;
+}
+const pad=n=>String(n).padStart(2,'0');
+
+function postHTML(p){
+  const img = p.renk ? '' : `<img class="bg" src="img/${pad(p.n)}.jpg" alt="" loading="lazy">`;
+  const bg  = p.renk ? ` style="background:${p.renk}"` : '';
+  const temsili = p.renk ? '' : '<span class="temsili">Görseller temsilidir</span>';
+  if(p.tur==='v'){
+    return `<div class="post video">${img}<div class="perde"></div>
+      <img class="logo-yatay" src="logo/tetra-yatay-beyaz.svg" alt="Tetra İncek">
+      ${REELS}<h4>${p.b}</h4>${temsili}</div>`;
+  }
+  // logo rengi, logonun oturduğu alt bölgeye göre seçilir (başlık rengi üst bölgeye göre)
+  const logoLac = p.logo==='lacivert';
+  const logo = logoLac ? 'tetra-dikey-lacivert.svg' : 'tetra-dikey-beyaz.svg';
+  const sinif = ['post','tasarim',p.tema, p.duz?'duz':'', p.dev?'dev':'', (!logoLac && !p.duz)?'alt-perde':'', p.karart?'karart':''].join(' ');
+  return `<div class="${sinif}"${bg}>${img}${p.plan?planSVG():''}<div class="perde"></div>
+    <div class="metin ${p.konum||''}">${p.kas?`<div class="kas">${p.kas}</div>`:''}<h4>${p.b}</h4>${p.alt?`<div class="alt-satir">${p.alt}</div>`:''}</div>
+    ${temsili}<img class="logo-dikey" src="logo/${logo}" alt="Tetra İncek"></div>`;
+}
+
+const liste=document.getElementById('liste');
+liste.innerHTML=POSTLAR.map(p=>`<figure data-tur="${p.tur==='v'?'video':'tasarim'}" data-seri="${p.seri}">
+  ${postHTML(p)}
+  <figcaption><span class="n">${pad(p.n)}</span><span class="tur">${p.tur==='v'?'Reels kapağı':'Tasarım postu'} · ${SERI[p.seri]}</span>
+  <span class="not">${p.b.replace(/<br>/g,' ').replace(/<\/?em>/g,'')}</span></figcaption></figure>`).join('');
+
+const izgara=document.getElementById('izgara');
+izgara.innerHTML=POSTLAR.map(p=>`<div class="hucre" title="${pad(p.n)}">${postHTML(p)}</div>`).join('');
+
+document.getElementById('sema-video').innerHTML=postHTML(POSTLAR[0]);
+document.getElementById('sema-tasarim').innerHTML=postHTML(POSTLAR[3]);
+
+document.querySelectorAll('[data-f]').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('[data-f]').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  const f=b.dataset.f;
+  liste.querySelectorAll('figure').forEach(fig=>{
+    fig.hidden = !(f==='hepsi' || fig.dataset.tur===f || fig.dataset.seri===f);
+  });
+}));
+document.querySelectorAll('[data-o]').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('[data-o]').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  izgara.classList.toggle('oran45', b.dataset.o==='45');
+}));
+
+</script>
+</body>
+</html>
